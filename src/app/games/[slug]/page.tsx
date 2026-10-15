@@ -33,12 +33,12 @@ export default async function GamePage({ params }: Props) {
         lede={game.lede}
         image={game.hero}
         priority
-        primary={
+        primary={{ href: "/contact", label: "Get in touch" }}
+        secondary={
           game.steam
             ? { href: game.steam, label: "Play on Steam", external: true }
-            : { href: "/contact", label: "Get in touch" }
+            : undefined
         }
-        secondary={game.steam ? { href: "/contact", label: "Get in touch" } : undefined}
       />
       <section>
         <div className="site-wrap grid gap-12 py-14 lg:grid-cols-12">

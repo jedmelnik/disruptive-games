@@ -733,6 +733,68 @@ export const leaders = [
   { name: "Grant Rogers", role: "Leadership team" },
 ] as const
 
+export type HomeSlide = {
+  id: string
+  kicker: string
+  title: string
+  lede: string
+  ledeMore?: string
+  src: string
+  poster: string
+  alt: string
+  durationSec: number
+  secondary?: { href: string; label: string; external?: boolean }
+}
+
+/** Original home background movies from the live Disruptive Games site. */
+export const homeSlides: HomeSlide[] = [
+  {
+    id: "wreck-runners",
+    kicker: "Now playing",
+    title: "Wreck Runners",
+    lede: "The Bermuda Triangle is full of things that shouldn't be there.",
+    ledeMore: "The Trustwell Corporation would like you to retrieve them.",
+    src: "/videos/wreck-home.mp4",
+    poster: "/videos/wreck-home.jpg",
+    alt: "Wreck Runners website loop: ORCA footage across a multi-panel composition.",
+    durationSec: 12,
+    secondary: { href: studio.steam, label: "Play on Steam", external: true },
+  },
+  {
+    id: "diablo-ii-resurrected",
+    kicker: "Client · Blizzard / Activision",
+    title: "Diablo II: Resurrected",
+    lede: "Online services and backend systems for the remaster.",
+    src: "/videos/diablo-home.mp4",
+    poster: "/videos/diablo-home.jpg",
+    alt: "Diablo II: Resurrected website loop of dungeon combat.",
+    durationSec: 10,
+    secondary: { href: "/games/diablo-ii-resurrected", label: "View project" },
+  },
+  {
+    id: "tony-hawks-pro-skater",
+    kicker: "Client · Vicarious Visions / Activision",
+    title: "Tony Hawk's Pro Skater 1+2",
+    lede: "Multiplayer integration, online services, and dedicated servers.",
+    src: "/videos/tony-home.mp4",
+    poster: "/videos/tony-home.jpg",
+    alt: "Tony Hawk's Pro Skater website loop of a midair grab.",
+    durationSec: 11,
+    secondary: { href: "/games/tony-hawks-pro-skater", label: "View project" },
+  },
+  {
+    id: "godfall",
+    kicker: "Client · Counterplay",
+    title: "Godfall",
+    lede: "Crafted effects for character abilities and levels.",
+    src: "/videos/godfall-home.mp4",
+    poster: "/videos/godfall-home.jpg",
+    alt: "Godfall website loop of combat VFX in a forest.",
+    durationSec: 11,
+    secondary: { href: "/games/godfall", label: "View project" },
+  },
+]
+
 export const homeHero: Plate = {
   src: "/images/wreck-shore.jpg",
   width: 1920,
@@ -762,7 +824,8 @@ export const pageHeroes = {
       focalY: 0.46,
       fillFrame: true,
       bleed: true,
-      subject: { l: 0.18, t: 0.16, r: 0.86, b: 0.7 },
+      // Shorter subject so fillFrame covers most of a ~1280x313 plane.
+      subject: { l: 0.1, t: 0.18, r: 0.92, b: 0.56 },
       align: "right" as const,
     },
   },
@@ -815,7 +878,7 @@ export const pageHeroes = {
       focalY: 0.4,
       fillFrame: true,
       bleed: true,
-      subject: { l: 0.22, t: 0.08, r: 0.8, b: 0.64 },
+      subject: { l: 0.16, t: 0.12, r: 0.9, b: 0.5 },
       align: "left" as const,
     },
   },

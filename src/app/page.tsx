@@ -1,24 +1,14 @@
 import Link from "next/link"
-import { PageHero } from "@/components/page-hero"
-import { games, homeHero, partners, studio } from "@/lib/content"
+import { HomeHeroCarousel } from "@/components/home-hero-carousel"
+import { games, homeSlides, partners, studio } from "@/lib/content"
 
 const featured = games.filter((game) => game.featured && game.slug !== "wreck-runners")
 
 export default function HomePage() {
   return (
     <>
-      <link rel="preload" as="image" href={homeHero.src} fetchPriority="high" />
-      <PageHero
-        home
-        priority
-        kicker="Now playing"
-        title="Wreck Runners"
-        lede="The Bermuda Triangle is full of things that shouldn't be there."
-        ledeMore="The Trustwell Corporation would like you to retrieve them."
-        image={homeHero}
-        primary={{ href: "/contact", label: "Get in touch" }}
-        secondary={{ href: studio.steam, label: "Play on Steam", external: true }}
-      />
+      <link rel="preload" as="image" href={homeSlides[0].poster} fetchPriority="high" />
+      <HomeHeroCarousel slides={homeSlides} />
 
       <section className="border-b border-white/10">
         <div className="site-wrap grid gap-8 py-16 lg:grid-cols-12 lg:py-20">
