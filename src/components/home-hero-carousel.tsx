@@ -11,6 +11,10 @@ type Props = {
   slides: HomeSlide[]
 }
 
+/** Sticky header is h-16. Frame height stays locked so every movie fills the same plane. */
+const FRAME =
+  "relative h-[calc(100dvh-4rem)] min-h-[calc(100dvh-4rem)] max-h-[calc(100dvh-4rem)] overflow-hidden bg-[#0f1923] text-[#f2f2f2]"
+
 export function HomeHeroCarousel({ slides }: Props) {
   const [index, setIndex] = useState(0)
   const [paused, setPaused] = useState(false)
@@ -48,7 +52,7 @@ export function HomeHeroCarousel({ slides }: Props) {
 
   return (
     <section
-      className="relative overflow-hidden bg-[#0f1923] text-[#f2f2f2]"
+      className={FRAME}
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
       onFocusCapture={() => setPaused(true)}
@@ -60,7 +64,7 @@ export function HomeHeroCarousel({ slides }: Props) {
       aria-roledescription="carousel"
       aria-label="Featured projects"
     >
-      <div className="pointer-events-none absolute inset-y-0 left-1/2 h-full w-full max-w-[1600px] -translate-x-1/2 overflow-hidden">
+      <div className="pointer-events-none absolute inset-0 overflow-hidden">
         {slides.map((item, i) => (
           <div
             key={item.id}
@@ -70,7 +74,6 @@ export function HomeHeroCarousel({ slides }: Props) {
             )}
             aria-hidden={i !== index}
           >
-            {/* Poster under the loop so the first paint is never an empty ink field. */}
             <img
               src={item.poster}
               alt=""
@@ -102,18 +105,14 @@ export function HomeHeroCarousel({ slides }: Props) {
               "linear-gradient(to right, rgba(15,25,35,0.92) 0%, rgba(15,25,35,0.7) 14%, rgba(15,25,35,0.28) 30%, transparent 48%)",
           }}
         />
-        <div
-          className="absolute inset-y-0 right-0 hidden w-[220px] min-[1600px]:block"
-          style={{ background: "linear-gradient(to right, transparent, #0f1923)" }}
-        />
       </div>
 
-      <div className="site-wrap relative z-10 py-14 sm:py-16 lg:py-20">
-        <div className="max-w-xl">
+      <div className="site-wrap relative z-10 flex h-full flex-col justify-end pb-8 pt-10 sm:pb-10 sm:pt-12 lg:justify-center lg:pb-16 lg:pt-16">
+        <div className="max-w-xl shrink-0">
           <p className="text-xs font-medium tracking-[0.22em] text-[#ff4655] uppercase">
             {slide.kicker}
           </p>
-          <h1 className="font-display mt-3 text-balance text-6xl uppercase leading-[0.88] tracking-tight sm:text-7xl lg:text-8xl">
+          <h1 className="font-display mt-3 text-balance text-5xl uppercase leading-[0.88] tracking-tight sm:text-7xl lg:text-8xl">
             {slide.title}
           </h1>
           <div className="mt-4 h-px w-12 bg-[#ff4655]" />
@@ -161,7 +160,7 @@ export function HomeHeroCarousel({ slides }: Props) {
           </div>
         </div>
 
-        <div className="mt-10 flex items-center gap-3">
+        <div className="mt-8 flex shrink-0 items-center gap-3 lg:mt-10">
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center border border-white/20 text-[#f2f2f2] transition hover:border-[#ff4655] hover:text-[#ff4655]"
